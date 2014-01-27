@@ -10,6 +10,7 @@ var apiKey = "AIzaSyBRsops2-sGNOAR2KzHvZwYTgqjPWEbD9k";
 angular.module('myApp.controllers', [])
 
     .controller('MyCtrl1', ['$scope', '$http', function ($scope, $http) {
+
         $scope.search = function () {	
             var queryString = queryPrefix + ($scope.query).replace(" ", "+") + "&key=" + apiKey;
             console.log("do the search for: " + queryString);
@@ -22,7 +23,7 @@ angular.module('myApp.controllers', [])
         };
 
         // inital values
-        $scope.query = "Uli Roth";
+        $scope.query = "Black Sabbath";
 
         var player = null;
         $scope.loadVideo = function (event) {
@@ -34,11 +35,12 @@ angular.module('myApp.controllers', [])
                 player.dispose();   
                 $("#vid").remove();
                 var videoHtml = '<video id="vid" src="" class="video-js vjs-default-skin" controls preload="auto" width="640" height="360"></video>';
-                $("body").prepend(videoHtml);   
+                $("#player").prepend(videoHtml);   
             }
 
             videojs('vid', { "techOrder": ["youtube"], "src": url }).ready(function () {
                 player = this;
+                player.play();
             });
         };
     }])

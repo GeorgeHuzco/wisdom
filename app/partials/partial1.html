@@ -1,22 +1,29 @@
-<div>
+<div id="guts">
 
-	<p>You Tube Search</p>
+	<div id="search">
+		<form ng-submit="search()">
+			YouTube Search: 
+			<input ng-model="query" />
+			<input type="submit" id="submit" value="Submit" />
+		</form>
+	</div>
 
-	Search: <input ng-model="query">
-	<button ng-click="search()">Search</button> 
+	<div id="player">
+	    <video id="vid" src="" class="video-js vjs-default-skin" controls
+	           preload="auto" width="640" height="360">
+	    </video>
+	</div>
 
-    <video id="vid" src="" class="video-js vjs-default-skin" controls
-           preload="auto" width="640" height="360">
-    </video>
-
-	<ul class="vids">
-		<li ng-repeat="vid in vids">
-			<span ng-click="loadVideo($event)" id="{{ vid.id.videoId }}" >
-				<img src="{{ vid.snippet.thumbnails.high.url}}" >
-				{{vid.snippet.title}}
-			</span>
-			<p>{{vid.snippet.description}}</p>
-		</li>
-	</ul>
+	<div id="results">
+		<ul class="vids">
+			<li ng-repeat="vid in vids">
+				<span ng-click="loadVideo($event)" id="{{ vid.id.videoId }}" >
+					<img src="{{ vid.snippet.thumbnails.high.url}}" >
+					{{vid.snippet.title}}
+				</span>
+				<p>{{vid.snippet.description}}</p>
+			</li>
+		</ul>
+	</div>
 
 </div>
