@@ -34,9 +34,9 @@ angular.module('myApp.controllers', [])
             if (player) {
                 player.dispose();   
                 $("#vid").remove();
-                var videoHtml = '<video id="vid" src="" class="video-js vjs-default-skin" controls preload="auto" width="640" height="360"></video>';
-                $("#player").prepend(videoHtml);   
             }
+            var videoHtml = '<video id="vid" src="" class="video-js vjs-default-skin" controls preload="auto" width="640" height="360"></video>';
+            $("#player").prepend(videoHtml);   
 
             videojs('vid', { "techOrder": ["youtube"], "src": url }).ready(function () {
                 player = this;
