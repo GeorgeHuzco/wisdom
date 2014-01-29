@@ -4,9 +4,15 @@
 		<form class="form-inline" role="form" ng-submit="search()">
 			<label id="keywords_label" for="search_keywords" >Keywords</label>
 			<div class="form-group">
-				<input id="search_keywords" type="text" class="form-control" ng-model="query" autofocus="autofocus">
+				<input id="search_keywords" size="20" type="text" class="form-control" ng-model="query" autofocus="autofocus">
 			</div>
 			<button type="submit" class="btn btn-primary">Search</button>
+			<div class="form-group">
+			<label>
+			<input is="fullAlbum" type="checkbox" ng-model="fullAlbum">
+				Full Album
+			</label>
+			</div>
 		</form>
 	</div>
 

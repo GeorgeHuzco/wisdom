@@ -14,14 +14,16 @@ angular.module('myApp.controllers', [])
             padding = 0.95,
             width = viewWidth * padding,
             height = width / aspectRatio,
-            videoHtml;
+            videoHtml,
+            options = "";
 
 
         $scope.search = function () {
             if (!$scope.query) {
                 $scope.query = "tull";
             }
-            var queryString = queryPrefix + ($scope.query).replace(" ", "+") + "+full+album" + "&key=" + apiKey;
+            options = $scope.fullAlbum ? "+full+album" : "";
+            var queryString = queryPrefix + ($scope.query).replace(" ", "+") + options + "&key=" + apiKey;
             console.log("do the search for: " + queryString);
 
             $http.get(queryString).success(function (data) {

@@ -8,6 +8,11 @@
   text-align: center;
 }
 
+#fullAlbum {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 #search {
   margin-top: auto;
   margin-bottom: auto;
