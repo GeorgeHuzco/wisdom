@@ -1,7 +1,5 @@
 'use strict';
 
-/* global angular, $, videojs */
-
 var queryPrefix = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=";
 var apiKey = "AIzaSyBRsops2-sGNOAR2KzHvZwYTgqjPWEbD9k";
 
@@ -10,9 +8,16 @@ var apiKey = "AIzaSyBRsops2-sGNOAR2KzHvZwYTgqjPWEbD9k";
 angular.module('myApp.controllers', [])
 
     .controller('MyCtrl1', ['$scope', '$http', function ($scope, $http) {
-        var player = null;
+        var player = null,
+            viewWidth = document.getElementById("guts").clientWidth,
+            aspectRatio = 16 / 9,
+            padding = 0.95,
+            width = viewWidth * padding,
+            height = width / aspectRatio,
+            videoHtml;
 
-        $scope.search = function () {	
+
+        $scope.search = function () {
             if (!$scope.query) {
                 $scope.query = "tull";
             }
@@ -22,7 +27,7 @@ angular.module('myApp.controllers', [])
             $http.get(queryString).success(function (data) {
                 $scope.vids = data.items;
                 if (data && data.items) {
-                    $scope.loadVideo(data.items[0].id.videoId); 
+                    $scope.loadVideo(data.items[0].id.videoId);
                 }
             });
         };
@@ -32,22 +37,16 @@ angular.module('myApp.controllers', [])
             var url = 'http://www.youtube.com/watch?v=' + videoId;
 
             if (player) {
-                player.dispose();   
+                player.dispose();
                 $("#vid").remove();
             }
 
-            var viewWidth = document.getElementById("guts").clientWidth;
-            var aspectRatio = 16 / 9;
-            var padding = .95;
-            var width = viewWidth * padding;
-            var height = width / aspectRatio;
-
             console.log("width: " + width + " height: " + height);
 
-            var videoHtml = '<video id="vid" src="" class="video-js vjs-default-skin" controls preload="auto" ></video>';
-            $("#player").prepend(videoHtml);  
+            videoHtml = '<video id="vid" src="" class="video-js vjs-default-skin" controls preload="auto" ></video>';
+            $("#player").prepend(videoHtml);
 
-            window.scrollTo(0, 0); 
+            window.scrollTo(0, 0);
 
             videojs('vid', { "techOrder": ["youtube"], "src": url }).ready(function () {
                 player = this;
