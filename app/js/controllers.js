@@ -10,24 +10,24 @@ var apiKey = "AIzaSyBRsops2-sGNOAR2KzHvZwYTgqjPWEbD9k";
 angular.module('myApp.controllers', [])
 
     .controller('MyCtrl1', ['$scope', '$http', function ($scope, $http) {
+        var player = null;
 
         $scope.search = function () {	
+            if (!$scope.query) {
+                $scope.query = "newest";
+            }
             var queryString = queryPrefix + ($scope.query).replace(" ", "+") + "&key=" + apiKey;
             console.log("do the search for: " + queryString);
 
             $http.get(queryString).success(function (data) {
                 $scope.vids = data.items;
-                console.log($scope.vids[0].snippet.description);
-                console.log($scope.vids[0].snippet.thumbnails.high.url);
+                if (data && data.items) {
+                    $scope.loadVideo(data.items[0].id.videoId); 
+                }
             });
         };
 
-        // inital values
-        $scope.query = "Black Sabbath";
-
-        var player = null;
-        $scope.loadVideo = function (event) {
-            var videoId = event.currentTarget.id;
+        $scope.loadVideo = function (videoId) {
             console.log('Load video with id = ' + videoId);
             var url = 'http://www.youtube.com/watch?v=' + videoId;
 
@@ -35,11 +35,24 @@ angular.module('myApp.controllers', [])
                 player.dispose();   
                 $("#vid").remove();
             }
-            var videoHtml = '<video id="vid" src="" class="video-js vjs-default-skin" controls preload="auto" width="640" height="360"></video>';
-            $("#player").prepend(videoHtml);   
+
+            var viewWidth = document.getElementById("guts").clientWidth;
+            var aspectRatio = 16 / 9;
+            var padding = .95;
+            var width = viewWidth * padding;
+            var height = width / aspectRatio;
+
+            console.log("width: " + width + " height: " + height);
+
+            var videoHtml = '<video id="vid" src="" class="video-js vjs-default-skin" controls preload="auto" ></video>';
+            $("#player").prepend(videoHtml);  
+
+            window.scrollTo(0, 0); 
 
             videojs('vid', { "techOrder": ["youtube"], "src": url }).ready(function () {
                 player = this;
+                player.width(width);
+                player.height(height);
                 player.play();
             });
         };

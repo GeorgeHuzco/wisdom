@@ -1,35 +1,38 @@
 <div id="header">
-	<img src="img/dee.jpg" />
-	<h1 id="title">Huzco YouTube Search</h1>
+
 	<div id="search">
-		<form ng-submit="search()">
-			<input ng-model="query" />
-			<input type="submit" id="submit" value="Submit" />
+		<form class="form-inline" role="form" ng-submit="search()">
+			<label id="keywords_label" for="search_keywords" >Keywords</label>
+			<div class="form-group">
+				<input id="search_keywords" type="text" class="form-control" ng-model="query" autofocus="autofocus">
+			</div>
+			<button type="submit" class="btn btn-default">Search</button>
 		</form>
 	</div>
 
-	<div id="player" />
-
-	<!--ul class="menu">
-	    <li><a href="#/main">HOME</a></li>
-	    <li><a href="#/contact">CONTACT</a></li>
-	</ul -->
+	<div id="player_background">
+		<div id="player" />
+	</div>
 </div>
 
+<br />
 
 <div id="guts">
 
-	<div id="results">
-		<ul class="vids">
-			<li ng-repeat="vid in vids">
-				<span ng-click="loadVideo($event)" id="{{ vid.id.videoId }}" >
-					<img src="{{ vid.snippet.thumbnails.default.url}}" >
-					{{vid.snippet.title}}
-				</span>
-				<p>{{vid.snippet.description}}</p>
-			</li>
-		</ul>
-	</div>
+	<ul class="vids list-unstyled">
+		<li ng-repeat="vid in vids">
+			<div class="vid_result" ng-click="loadVideo($event.currentTarget.id)" id="{{ vid.id.videoId }}" >
+				<div class="col-xs-6">
+					<img class="thumb_img img-responsive" src="{{ vid.snippet.thumbnails.high.url}}" >
+				</div>
+				<div class="thumb_data col-xs-6">
+					<p class"thumb_title lead" >{{vid.snippet.title}}</p>
+					<p class="thumb_description small">{{vid.snippet.description}}</p>
+				</div>
+			</div>
+			<hr class="clear_hr" />
+		</li>
+	</ul>
 
 	<div id="footer" />
 </div>

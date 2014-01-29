@@ -1,43 +1,59 @@
 /* app css stylesheet */
 
-/*html *
-{
-   font-size: 1em !important;
-   color: #fff !important;
-   font-family: Arial !important;
+body {
+
 }
 
-*/
-body {
-  background-color: #eee
+#view {
+  background-color: #ddd;
+  border:2px solid;
+}
+
+#banner {
+  text-align: center;
+}
+
+#search {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+#keywords_label {
+
+}
+
+#player {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #ddd;
+}
+
+#vid {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#search {
+  text-align: center;
+}
+
+#player_background {
+  background-color: #111;
+}
+
+.clear_hr {
+  clear: left;
+}
+
+.thumb_img {
+}
+
+.thumb_data {
+}
+
+.clear_hr {
 }
 
 .menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
-  text-align: right;
-}
-
-.menu:before {
-  content: "[";
-}
-
-.menu:after {
-  content: "]";
-}
-
-.menu > li {
-  display: inline;
-}
-
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
-}
-
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
-}
