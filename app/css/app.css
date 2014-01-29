@@ -1,12 +1,7 @@
 /* app css stylesheet */
 
-body {
-
-}
-
 #view {
   background-color: #ddd;
-  border:2px solid;
 }
 
 #banner {
@@ -18,10 +13,7 @@ body {
   margin-bottom: auto;
   margin-top: 1em;
   margin-bottom: 1em;
-}
-
-#keywords_label {
-
+  text-align: center;
 }
 
 #player {
@@ -35,12 +27,8 @@ body {
   margin-right: auto;
 }
 
-#search {
-  text-align: center;
-}
-
-#player_background {
-  background-color: #111;
+.vid_result {
+  margin-top: 10px;
 }
 
 .clear_hr {
@@ -50,10 +38,16 @@ body {
 .thumb_img {
 }
 
+.thumb_img_img {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .thumb_data {
 }
 
-.clear_hr {
+.thumb_data_data {
+  background-color: rgba(100, 0, 0, .02);
 }
 
-.menu {

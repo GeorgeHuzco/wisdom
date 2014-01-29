@@ -14,9 +14,9 @@ angular.module('myApp.controllers', [])
 
         $scope.search = function () {	
             if (!$scope.query) {
-                $scope.query = "newest";
+                $scope.query = "tull";
             }
-            var queryString = queryPrefix + ($scope.query).replace(" ", "+") + "&key=" + apiKey;
+            var queryString = queryPrefix + ($scope.query).replace(" ", "+") + "+full+album" + "&key=" + apiKey;
             console.log("do the search for: " + queryString);
 
             $http.get(queryString).success(function (data) {
